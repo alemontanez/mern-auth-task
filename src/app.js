@@ -23,9 +23,6 @@ app.get('/', (req, res) => {
   res.json('API funcionando')
 })
 
-app.get('/', (req, res) => {
-  res.json({ message: 'API funcionando correctamente'})
-})
 app.use('/api/auth', authRoutes)
 app.use('/api', taskRoutes)
 
