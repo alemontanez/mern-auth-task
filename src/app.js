@@ -1,5 +1,6 @@
 import express from 'express'
 import morgan from 'morgan'
+import cors from 'cors'
 import cookieParser from 'cookie-parser'
 import authRoutes from './routes/auth.routes.js'
 import taskRoutes from './routes/task.routes.js'
@@ -7,13 +8,12 @@ import { FRONTEND_URL } from './config.js'
 
 const app = express()
 
-app.use((req, res, next) => {
-  res.append('Access-Control-Allow-Origin', [FRONTEND_URL])
-  res.append('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,PATCH')
-  res.append('Access-Control-Allow-Headers', 'Content-Type')
-  res.append('Access-Control-Allow-Credentials', 'true')
-  next()
-})
+app.use(cors({
+  origin: FRONTEND_URL,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
+  allowedHeaders: ['Content-Type'],
+  credentials: true
+}))
 
 app.use(morgan('dev'))
 app.use(express.json())
