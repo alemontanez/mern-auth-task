@@ -1,27 +1,27 @@
-import { Link, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { useEffect } from "react"
 import { useAuth } from "../context/AuthContext"
+import { Link } from "react-router-dom"
+import "../styles/LandingView.css"
 
 export default function LandingView() {
-
   const navigate = useNavigate()
-  const {isAuthenticated} = useAuth()
+  const { isAuthenticated } = useAuth()
 
   useEffect(() => {
-    if (isAuthenticated) navigate('/home')
-  }, [isAuthenticated])
+    if (isAuthenticated) navigate("/home")
+  }, [isAuthenticated, navigate])
 
   return (
-    <div>
-      <h1>Landing view</h1>
-      <ul>
-        <Link to={'/login'}>
-          <li>Ingresar</li>
-        </Link>
-        <Link to={'/register'}>
-          <li>Registrarse</li>
-        </Link>
-      </ul>
+    <div className="landing">
+      <header className="landing-header">
+        <h1>MERN Manager</h1>
+        <p>Gestiona tus tareas de manera eficiente y sencilla.</p>
+        <div className="landing-buttons">
+          <Link to="/login" className="btn primary">Iniciar sesión</Link>
+          <Link to="/register" className="btn secondary">Registrarse</Link>
+        </div>
+      </header>
     </div>
-  )
+  );
 }

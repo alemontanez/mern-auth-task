@@ -1,5 +1,4 @@
 import { useForm } from 'react-hook-form'
-// import { loginRequest } from "../api/auth"
 import '../styles/LoginForm.css'
 import { useAuth } from "../context/AuthContext"
 import { useNavigate, Link } from 'react-router-dom'
@@ -10,7 +9,6 @@ export default function LoginView() {
 
   const {
     register,
-    reset,
     handleSubmit,
     formState: { errors }
   } = useForm()

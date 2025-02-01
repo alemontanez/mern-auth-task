@@ -1,0 +1,89 @@
+.landing {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - 58px);
+  background: white; 
+  color: #333;
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+.landing-header {
+  max-width: 600px;
+  padding: 20px;
+}
+
+.landing-header h1 {
+  font-size: 42px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #222;
+}
+
+.landing-header p {
+  font-size: 18px;
+  margin-bottom: 20px;
+  color: #555;
+}
+
+.landing-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.btn {
+  padding: 12px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.btn.primary {
+  background-color: #6c63ff;
+  color: white;
+  font-weight: bold;
+}
+
+.btn.primary:hover {
+  background-color: #5a55d6;
+  transform: scale(1.05);
+}
+
+.btn.secondary {
+  background-color: transparent;
+  border: 2px solid #6c63ff;
+  color: #6c63ff;
+}
+
+.btn.secondary:hover {
+  background-color: #6c63ff;
+  color: white;
+  transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+  .landing-header {
+    max-width: 90%;
+  }
+
+  .landing-header h1 {
+    font-size: 36px;
+  }
+
+  .landing-header p {
+    font-size: 16px;
+  }
+
+  .nav-links {
+    gap: 10px;
+  }
+
+  .nav-btn {
+    font-size: 12px;
+    padding: 6px 10px;
+  }
+}

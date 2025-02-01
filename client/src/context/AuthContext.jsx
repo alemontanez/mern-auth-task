@@ -1,5 +1,5 @@
 import { createContext, useState, useContext, useEffect } from "react"
-import { registerRequest, loginRequest, verifyTokenRequest } from "../api/auth"
+import { registerRequest, loginRequest, verifyTokenRequest, logoutRequest } from "../api/auth"
 import Cookies from 'js-cookie'
 
 export const AuthContext = createContext()
@@ -23,7 +23,6 @@ export const AuthProvider = ({ children }) => {
       const res = await registerRequest(user)
       setUser(res.data)
       setIsAuthenticated(true)
-      // useNavigate('/home')
     } catch (error) {
       setErrors(error.response.data)
     }
@@ -37,6 +36,16 @@ export const AuthProvider = ({ children }) => {
     } catch (error) {
       setErrors(error.response.data)
       console.log(errors)
+    }
+  }
+
+  const logout = async () => {
+    try {
+      await logoutRequest()
+      setUser(null)
+      setIsAuthenticated(false)
+    } catch (error) {
+      console.log(error)
     }
   }
 
@@ -80,6 +89,7 @@ export const AuthProvider = ({ children }) => {
     <AuthContext.Provider value={{
       signup,
       signin,
+      logout,
       loading,
       user,
       isAuthenticated,
