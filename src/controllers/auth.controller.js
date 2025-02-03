@@ -3,7 +3,6 @@ import { createAccessToken } from "../libs/jwt.js"
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 import { TOKEN_SECRET } from '../config.js'
-import { now } from 'mongoose'
 
 export const register = async (req, res) => {
   const { email, password, username } = req.body
@@ -24,7 +23,12 @@ export const register = async (req, res) => {
     })
     const userSaved = await newUser.save()
     const token = await createAccessToken({ id: userSaved._id })
-    res.cookie('token', token)
+    res.cookie('token', token, {
+      httpOnly: true,
+      secure: true,
+      sameSite: 'none',
+      maxAge: 24 * 60 * 60 * 1800
+    })
     res.json({
       id: userSaved._id,
       username: userSaved.username,
@@ -51,7 +55,12 @@ export const login = async (req, res) => {
 
     const token = await createAccessToken({ id: userFound._id })
 
-    res.cookie('token', token)
+    res.cookie('token', token, {
+      httpOnly: true,
+      secure: true,
+      sameSite: 'none',
+      maxAge: 24 * 60 * 60 * 1800
+    })
     res.json({
       message: 'User logged successfully',
       username: userFound.username
