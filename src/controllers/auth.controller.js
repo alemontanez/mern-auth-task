@@ -27,7 +27,8 @@ export const register = async (req, res) => {
       httpOnly: true,
       secure: true,
       sameSite: 'none',
-      maxAge: 24 * 60 * 60 * 1800
+      maxAge: 24 * 60 * 60 * 1000,
+      domain: 'mern-todo-api-production.up.railway.app'
     })
     res.json({
       id: userSaved._id,
@@ -60,7 +61,7 @@ export const login = async (req, res) => {
       secure: true,
       sameSite: 'none',
       maxAge: 24 * 60 * 60 * 1000,
-      domain: '.railway.app'
+      domain: 'mern-todo-api-production.up.railway.app'
     })
     res.json({
       message: 'User logged successfully',
